@@ -20,13 +20,20 @@ fi
 
 echo "✅ Docker 和 Docker Compose 已安装"
 
-# 构建并启动服务
-echo "🏗️  正在构建和启动服务..."
+# 进入docker目录
 cd docker
+
+# 清理之前的容器（如果存在）
+echo "🧹 清理之前的容器..."
+docker-compose down --remove-orphans || true
+
+# 构建并启动所有服务
+echo "🏗️  正在构建和启动所有服务..."
 docker-compose up -d --build
 
 echo "⏳ 等待服务启动..."
-sleep 30
+# 等待数据库初始化
+sleep 20
 
 # 检查服务状态
 echo "🔍 检查服务状态..."
@@ -41,9 +48,11 @@ echo "   健康检查: http://localhost:5000/health"
 echo ""
 echo "📋 默认凭据:"
 echo "   用户名: admin"
+echo "   邮箱: admin@it-ops-platform.local"
 echo "   密码: admin123"
 echo ""
 echo "🔧 管理命令:"
 echo "   查看日志: docker-compose logs -f"
 echo "   停止服务: docker-compose down"
 echo "   重启服务: docker-compose restart"
+echo "   查看服务状态: docker-compose ps"

@@ -34,12 +34,9 @@
 ## 快速开始
 
 ### 环境要求
-- Node.js 16+
 - Docker & Docker Compose
-- PostgreSQL
-- Redis
 
-### 本地开发
+### 一键部署 (推荐)
 
 1. 克隆项目
 ```bash
@@ -47,37 +44,31 @@ git clone <repository-url>
 cd it-ops-platform
 ```
 
-2. 安装依赖
+2. 使用部署脚本一键启动
 ```bash
-# 前端
-cd frontend
-npm install
-
-# 后端
-cd ../backend
-npm install
+chmod +x deploy.sh
+./deploy.sh
 ```
 
-3. 环境配置
+### 手动部署
+
+1. 克隆项目
 ```bash
-# 在backend目录下创建.env文件
-cp .env.example .env
-# 编辑.env文件配置数据库连接信息
+git clone <repository-url>
+cd it-ops-platform
 ```
 
-4. 启动服务
+2. 使用Docker Compose启动所有服务
 ```bash
-# 使用Docker Compose (推荐)
 cd docker
-docker-compose up
-
-# 或分别启动
-# 前端 (在frontend目录)
-npm run dev
-
-# 后端 (在backend目录)
-npm run dev
+docker-compose up -d --build
 ```
+
+服务将在以下端口运行:
+- 前端: http://localhost:3000
+- 后端API: http://localhost:5000
+- PostgreSQL: localhost:5432
+- Redis: localhost:6379
 
 ## API 文档
 
